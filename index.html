@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Loan EMI Calculator — Frontend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card">
+            <header class="appHeader">
+                <div class="logo">
+                    <div class="brandMark">M</div>
+                </div>
+                <div>
+                    <h1>Loan EMI Calculator — Made By Mohit Mathur</h1>
+                   
+                </div>
+            </header>
+
+            <div class="grid">
+                <section>
+                    <form id="loanForm" class="loanForm" onsubmit="return false;">
+                        <div class="row">
+                            <div class="col">
+                                <label for="customerID">Customer ID</label>
+                                <input id="customerID" type="text" placeholder="e.g. 1001" required />
+                            </div>
+                            <div class="col">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Full name" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="age">Age</label>
+                                <input id="age" type="number" min="0" max="120" placeholder="e.g. 30" required />
+                            </div>
+                            <div class="col">
+                                <label for="contact">Contact No.</label>
+                                <input id="contact" type="text" placeholder="Mobile or phone" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="loanType">Loan Type</label>
+                                <select id="loanType">
+                                    <option>Home Loan</option>
+                                    <option>Personal Loan</option>
+                                    <option>Car Loan</option>
+                                    <option>Education Loan</option>
+                                    <option>Business Loan</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="principal">Loan Amount (Principal)</label>
+                                <div class="inputWithIcon">
+                                    <input id="principal" type="number" min="0" step="0.01" placeholder="e.g. 500000"
+                                        required />
+                                    <div class="icon">₹</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="annualRate">Annual Interest Rate (%)</label>
+                                <input id="annualRate" type="number" min="0" step="0.01" value="8.5" required />
+                            </div>
+                            <div class="col">
+                                <label for="tenureMonths">Tenure (Months)</label>
+                                <input id="tenureMonths" type="number" min="1" step="1" value="60" required />
+                            </div>
+                        </div>
+
+                        <div class="controls">
+                            <button class="btn" id="calcBtn">Calculate EMI</button>
+                            <button class="btn secondary" id="saveBtn" disabled>Save Record</button>
+                            <button class="btn ghost" id="downloadBtn" disabled>Download LoanRecords.txt</button>
+                        </div>
+
+                        <p class="muted">Tip: Use <strong>Save Record</strong> to store locally. Download merges all
+                            saved records into a text file.</p>
+                    </form>
+
+                    <div class="records card" id="recordsWrap" style="margin-top:18px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                            <strong>Saved Records</strong>
+                            <small class="muted">LocalStorage</small>
+                        </div>
+                        <div id="noRecords" class="muted">No records yet.</div>
+                        <div id="recordsTable" style="display:none">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Loan</th>
+                                        <th>EMI</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recordsBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+                <aside class="summary">
+                    <h2>EMI Summary</h2>
+                    <div id="summaryContent">
+                        <div class="kpi">
+                            <div class="title">Monthly EMI</div>
+                            <div class="value" id="emiVal">—</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="title">Total Payment</div>
+                            <div class="value" id="totalPayVal">—</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="title">Total Interest</div>
+                            <div class="value" id="totalInterestVal">—</div>
+                        </div>
+                        <div class="meta">Loan Type: <span id="sLoanType">—</span></div>
+                        <div class="meta">Tenure: <span id="sTenure">—</span> months</div>
+                        <div class="barWrap" aria-hidden="true">
+                            <div class="bar" id="progressBar"></div>
+                        </div>
+
+                        <div style="margin-top:12px;display:flex;gap:8px">
+                            <button class="btn secondary" id="copyBtn" disabled>Copy Summary</button>
+                            <button class="btn ghost" id="printBtn" disabled>Print Summary</button>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+    <script src="scripte.js"></script>
+</body>
+
+</html>
